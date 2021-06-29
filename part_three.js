@@ -66,42 +66,43 @@ let artists = [
 
 
 // sorting the objects in chronological order, from the oldest to the newest
-artists.sort((a, b) => (a.releaseYear > b.releaseYear) ? 1 : -1);
+//artists.sort((a, b) => (a.releaseYear > b.releaseYear) ? 1 : -1);
 
 
 // creating an array with just the release years of the objects where "isWrong" doesn't exist
-var release_Year = artists.map(function(el) {
-    if (el.isWrong != true) {
+let releaseYears = artists.map(function (el) {
+    if (el.isWrong !== true) {
         return el.releaseYear;
     }
 });
 
 // extracting the triplets where the release times are equally apart
-i = 0;
-pos = 0; // position in array (yearsOrder)
-let yearsOrder = new Array();
+let firstIndex = 0;
+let pos = 0; // position in array (yearsOrder)
+let yearsOrder = new Array;
 
-while (i < release_Year.length - 1) {  // to parse all the possible triplets until the penultimate position
-    j=i+1;
-    for (j; j<release_Year.length; j++) {
-        firstYear=release_Year[i];
-        secondYear=release_Year[j];
-        timeApart=secondYear-firstYear;
-        thirdYear=secondYear+timeApart;
+while (firstIndex < releaseYears.length - 1) {  // to parse all the possible triplets until the penultimate position
+    let j = firstIndex + 1;
+    for (j; j < releaseYears.length; j++) {
+        let firstYear = releaseYears[firstIndex];
+        let secondYear = releaseYears[j];
+        let timeApart = secondYear - firstYear;
+        let thirdYear = secondYear + timeApart;
 
-        if (release_Year.indexOf(thirdYear, j+1) > -1) {
+        let isFound = releaseYears.indexOf(thirdYear, j + 1) > -1;
+        if (isFound) {
             yearsOrder[pos] = makeArray(firstYear, secondYear, thirdYear);
             pos = pos + 1;
         }
 
     }
-    i++;
+    firstIndex++;
 }
 console.log(yearsOrder);
 
 // returning the indexes of the triplets in an array
 function makeArray(firstYear, secondYear, thirdYear) {
-    let myArray = new Array();
+    let myArray = new Array;
     myArray = '(' + firstYear + ',' + secondYear + ',' + thirdYear + ')';
 
     return myArray;
